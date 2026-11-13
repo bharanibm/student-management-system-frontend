@@ -1,3 +1,4 @@
+import axios from 'axios';
 import api from '../api.js'
 
 export const getStudents = async () => {
@@ -6,6 +7,8 @@ export const getStudents = async () => {
         return res.data;
     } catch (error) {
         console.log(error);
+        throw error;
+
     }
 }
 
@@ -16,6 +19,7 @@ export const addStudents = async (payload) => {
         return res.data;
     } catch (error) {
         console.log(error);
+        throw error;
         
     }
 }
@@ -26,6 +30,7 @@ export const deleteStudent   = async (id) => {
         return res.data;
     } catch (error) {
         console.log(error);
+        throw error;
         
     }
 }
@@ -35,6 +40,7 @@ export const getStudentById = async (id) => {
         return res.data;
     } catch (error) {
         console.log(error);
+        throw error;
         
     }
 }
@@ -47,6 +53,7 @@ export const  UpdateStudents = async (id,payload) => {
 
     } catch (error) {
         console.log(error);
+        throw error;
         
     }
 }
@@ -59,6 +66,36 @@ export const searchByName = async (name) => {
         return res.data;
     } catch (error) {
         console.log(error);
+        throw error;
+        
+    }
+}
+
+//only pagination
+{/** 
+    export const fetchPage = async(page , pageSize )=>{
+    try {
+        let res = await api.get(`/page?page=${page}&size=${pageSize}`);
+        return res.data
+        
+    } catch (error) {
+        console.log(error);
+        throw error;
+        
+    }
+}*/}
+
+//search and pagination
+export const fetchPage = async(name, page , pageSize )=>{
+    try {
+        let res = await api.get(`/page?name=${encodeURIComponent(name)}&page=${page}&size=${pageSize}`);
+        console.log(res);
+        
+        return res.data
+        
+    } catch (error) {
+        console.log(error);
+        throw error;
         
     }
 }
